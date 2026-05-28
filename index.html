@@ -136,13 +136,6 @@ footer a:hover{color:var(--gold)}
   <span class="hero-eyebrow">Cohorte Beta · Cupos limitados</span>
   <h1 class="hero-title">Operación<br><span>Spotlight</span>™</h1>
   <p class="hero-sub">Tu misión: ser vista, escuchada e imparable.</p>
-  <div class="hero-stats">
-    <div class="stat"><div class="stat-n">5</div><div class="stat-l">Semanas</div></div>
-    <div class="stat"><div class="stat-n">10</div><div class="stat-l">Participantes máx.</div></div>
-    <div class="stat"><div class="stat-n">6</div><div class="stat-l">Sesiones en vivo</div></div>
-    <div class="stat"><div class="stat-n">1</div><div class="stat-l">Sesión 1:1 privada</div></div>
-  </div>
-  <hr class="hero-divider">
 </div>
 
 <!-- PLANS -->
@@ -160,7 +153,7 @@ footer a:hover{color:var(--gold)}
         <div class="plan-price">$497<sub> USD</sub></div>
         <p class="plan-note">Un solo pago · Programa completo de 5 semanas</p>
         <ul class="plan-list">
-          <li>4 sesiones grupales (75 min c/u)</li>
+          <li>4 sesiones grupales (60-75 min c/u)</li>
           <li>1 sesión privada 1:1 (60 min)</li>
           <li>Comunidad WhatsApp 5 semanas</li>
           <li>Micro-retos y workbooks completos</li>
@@ -177,7 +170,7 @@ footer a:hover{color:var(--gold)}
         <div class="plan-price">$200<sub> /mes</sub></div>
         <p class="plan-note">3 cuotas mensuales · Total $600 USD</p>
         <ul class="plan-list">
-          <li>4 sesiones grupales (75 min c/u)</li>
+          <li>4 sesiones grupales (60-75 min c/u)</li>
           <li>1 sesión privada 1:1 (60 min)</li>
           <li>Comunidad WhatsApp 5 semanas</li>
           <li>Micro-retos y workbooks completos</li>
@@ -301,7 +294,7 @@ footer a:hover{color:var(--gold)}
       </div>
       <span class="err-msg" id="err-term">Debes aceptar los términos para continuar.</span>
       <button type="button" class="submit-btn" id="sbtn" onclick="enviar()">Reservar mi lugar ahora →</button>
-      <p class="form-footnote">¿Preguntas? <strong>tatianaalvarezcoach@gmail.com</strong> · WhatsApp 6550-1500</p>
+      <p class="form-footnote">¿Tienes dudas? Escríbeme al WhatsApp <strong>6550-1500</strong></p>
     </form>
   </div>
 </div>
@@ -312,7 +305,7 @@ footer a:hover{color:var(--gold)}
   <h2 class="success-title">¡Misión iniciada!</h2>
   <p class="success-sub" id="smsg">Tu formulario fue recibido.<br>Te contactaré en menos de 24 horas para confirmar tu lugar.</p>
   <ul class="steps">
-    <li><span class="step-n">1</span>Revisa tu correo — te llegará un resumen</li>
+    <li><span class="step-n">1</span>Te enviaré la info y confirmación por WhatsApp al número que registraste</li>
     <li><span class="step-n">2</span>Confirmaré tu pago de Yappy y te escribo por WhatsApp</li>
     <li><span class="step-n">3</span>Una vez confirmado recibes acceso al grupo</li>
     <li><span class="step-n">4</span>¡Bienvenida a Operación Spotlight!</li>
@@ -338,7 +331,7 @@ footer a:hover{color:var(--gold)}
 (function(){
   if(window.location.search.indexOf('success=1') > -1){
     document.getElementById('success-section').style.display = 'block';
-    document.getElementById('smsg').innerHTML = '¡Tu pago fue procesado!<br>Te escribiré por WhatsApp para darte acceso al grupo.';
+    document.getElementById('smsg').innerHTML = '¡Tu pago fue procesado con éxito!<br>Te escribiré por WhatsApp en las próximas horas para darte acceso al grupo.';
     setTimeout(function(){
       document.getElementById('success-section').scrollIntoView({behavior:'smooth'});
     }, 100);
@@ -382,14 +375,14 @@ function selMetodo(v, el) {
   if (v === 'yappy') {
     yi.style.display = 'block';
     comp.setAttribute('required', 'required');
-    // Tarjeta va a cuanto.app, Yappy se queda en la página
     document.getElementById('form-next').value =
       'https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1';
   } else {
     yi.style.display = 'none';
     comp.removeAttribute('required');
+    // _next no se usa para tarjeta — el JS redirige directamente
     document.getElementById('form-next').value =
-      'https://cuanto.app/alfaconsultores/w/55786f';
+      'https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1';
   }
 }
 
@@ -398,18 +391,26 @@ function enviar() {
   var et = document.getElementById('err-term');
   et.style.display = 'none';
   if (!t) { et.style.display = 'block'; return; }
+
   var metodo = document.querySelector('input[name="pago-ui"]:checked').value;
+  var btn = document.getElementById('sbtn');
+
   if (metodo === 'yappy') {
     var comp = document.getElementById('comprobante');
     if (!comp.files || comp.files.length === 0) {
       alert('Por favor sube el comprobante de pago Yappy.');
       return;
     }
+    btn.disabled = true;
+    btn.textContent = 'Enviando...';
+    document.getElementById('registro-form').submit();
+
+  } else {
+    // Tarjeta: directo a cuanto.app, sin pasar por Formsubmit
+    btn.disabled = true;
+    btn.textContent = 'Redirigiendo al pago...';
+    window.location.href = 'https://cuanto.app/alfaconsultores/w/55786f';
   }
-  var btn = document.getElementById('sbtn');
-  btn.disabled = true;
-  btn.textContent = metodo === 'card' ? 'Redirigiendo al pago...' : 'Enviando...';
-  document.getElementById('registro-form').submit();
 }
 </script>
 </body>
