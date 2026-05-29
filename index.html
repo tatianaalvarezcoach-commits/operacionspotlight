@@ -202,12 +202,12 @@ footer a:hover{color:var(--gold)}
       <input type="hidden" name="entry.258917689" id="h-metodo" value="Tarjeta">
 
       <div class="frow">
-        <div class="fg"><label>Nombre *</label><input type="text" name="entry.175298101" placeholder="Tu nombre" required></div>
-        <div class="fg"><label>Apellido *</label><input type="text" name="entry.2141775406" placeholder="Tu apellido" required></div>
+        <div class="fg"><label>Nombre *</label><input type="text" id="fn" name="entry.175298101" placeholder="Tu nombre" required></div>
+        <div class="fg"><label>Apellido *</label><input type="text" id="fa" name="entry.2141775406" placeholder="Tu apellido" required></div>
       </div>
-      <div class="fg"><label>Correo electrónico *</label><input type="email" name="entry.1324133263" placeholder="hola@tuempresa.com" required></div>
+      <div class="fg"><label>Correo electrónico *</label><input type="email" id="fe" name="entry.1324133263" placeholder="hola@tuempresa.com" required></div>
       <div class="frow">
-        <div class="fg"><label>WhatsApp *</label><input type="tel" name="entry.1717538191" placeholder="+507 6000-0000" required></div>
+        <div class="fg"><label>WhatsApp *</label><input type="tel" id="fw" name="entry.1717538191" placeholder="+507 6000-0000" required></div>
         <div class="fg"><label>País</label>
           <select name="entry.1635404211">
             <option value="">Selecciona...</option>
@@ -348,19 +348,14 @@ function selMetodo(v, el) {
   document.querySelectorAll('.pay-card').forEach(function(m){ m.classList.remove('active'); });
   el.classList.add('active');
   document.querySelector('input[name="pago-ui"][value="'+v+'"]').checked = true;
-  document.getElementById('h-metodo').value = v === 'card' ? 'Tarjeta' : 'Yappy';
   var yi = document.getElementById('yappy-info');
   if (v === 'yappy') {
     yi.style.display = 'block';
     comp.setAttribute('required', 'required');
-    document.getElementById('form-next').value =
-      'https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1';
   } else {
     yi.style.display = 'none';
     comp.removeAttribute('required');
     // _next no se usa para tarjeta — el JS redirige directamente
-    document.getElementById('form-next').value =
-      'https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1';
   }
 }
 
