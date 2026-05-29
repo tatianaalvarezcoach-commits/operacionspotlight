@@ -73,7 +73,6 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .fg{display:flex;flex-direction:column;gap:6px;margin-bottom:16px}
 .fg label{font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted)}
 .fg input,.fg select,.fg textarea{background:rgba(255,255,255,.04);border:1px solid var(--border);color:#fff;font-size:14px;padding:12px 16px;outline:none;font-family:inherit;width:100%;transition:border-color .2s}
-.fg input[type=file]{padding:10px 16px;cursor:pointer}
 .fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,.2)}
 .fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);background:rgba(245,166,35,.04)}
 .fg select{appearance:none;cursor:pointer}
@@ -198,27 +197,19 @@ footer a:hover{color:var(--gold)}
     <h2 class="form-title">Reserva tu lugar</h2>
     <p class="form-sub">Completa el formulario — te contactamos en menos de 24 horas para confirmar.</p>
 
-    <form id="registro-form"
-      action="https://api.web3forms.com/submit"
-      method="POST"
-      enctype="multipart/form-data">
-
-      <!-- Web3Forms config -->
-      <input type="hidden" name="access_key" value="4c50adb0-a141-4385-8382-b10339d83ee8">
-      <input type="hidden" name="subject" value="🎯 Nueva inscripción — Operación Spotlight">
-      <input type="hidden" name="redirect" id="form-next" value="https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1">
-      <input type="hidden" name="Plan" id="h-plan" value="Pago único $497">
-      <input type="hidden" name="Método de pago" id="h-metodo" value="Tarjeta">
+    <form id="registro-form" action="https://docs.google.com/forms/d/e/1FAIpQLSfJvxGRkQHXfXVvSydFiB-pxyHL0P228HCP8ckxAJcrdIIJYA/formResponse" method="POST">
+      <input type="hidden" name="entry.871526378" id="h-plan" value="Pago único $497">
+      <input type="hidden" name="entry.258917689" id="h-metodo" value="Tarjeta">
 
       <div class="frow">
-        <div class="fg"><label>Nombre *</label><input type="text" name="Nombre" placeholder="Tu nombre" required></div>
-        <div class="fg"><label>Apellido *</label><input type="text" name="Apellido" placeholder="Tu apellido" required></div>
+        <div class="fg"><label>Nombre *</label><input type="text" name="entry.175298101" placeholder="Tu nombre" required></div>
+        <div class="fg"><label>Apellido *</label><input type="text" name="entry.2141775406" placeholder="Tu apellido" required></div>
       </div>
-      <div class="fg"><label>Correo electrónico *</label><input type="email" name="Correo" placeholder="hola@tuempresa.com" required></div>
+      <div class="fg"><label>Correo electrónico *</label><input type="email" name="entry.1324133263" placeholder="hola@tuempresa.com" required></div>
       <div class="frow">
-        <div class="fg"><label>WhatsApp *</label><input type="tel" name="WhatsApp" placeholder="+507 6000-0000" required></div>
+        <div class="fg"><label>WhatsApp *</label><input type="tel" name="entry.1717538191" placeholder="+507 6000-0000" required></div>
         <div class="fg"><label>País</label>
-          <select name="País">
+          <select name="entry.1635404211">
             <option value="">Selecciona...</option>
             <option>Panamá</option><option>Estados Unidos</option><option>México</option>
             <option>Colombia</option><option>Costa Rica</option><option>Guatemala</option>
@@ -228,7 +219,7 @@ footer a:hover{color:var(--gold)}
         </div>
       </div>
       <div class="fg"><label>¿Cuál describe mejor tu situación?</label>
-        <select name="Perfil">
+        <select name="entry.757404679">
           <option value="">Selecciona...</option>
           <option>Líder / Gerente corporativa</option>
           <option>Emprendedora / Dueña de negocio</option>
@@ -237,10 +228,10 @@ footer a:hover{color:var(--gold)}
         </select>
       </div>
       <div class="fg"><label>¿Cuál es tu mayor desafío de visibilidad hoy?</label>
-        <textarea name="Desafío" placeholder="Cuéntame brevemente lo que más te frena..."></textarea>
+        <textarea name="entry.801899710" placeholder="Cuéntame brevemente lo que más te frena..."></textarea>
       </div>
       <div class="fg"><label>¿Necesitas factura corporativa?</label>
-        <select name="Factura">
+        <select name="entry.2005017355">
           <option value="No">No, pago personal</option>
           <option value="Sí">Sí, necesito factura a empresa</option>
         </select>
@@ -276,12 +267,9 @@ footer a:hover{color:var(--gold)}
         <ul class="yappy-steps">
           <li><span>1</span>Abre tu app Yappy y envía el monto de tu plan al 6550-1500</li>
           <li><span>2</span>Toma una captura del comprobante</li>
-          <li><span>3</span>Sube el comprobante aquí abajo y envía el formulario</li>
+          <li><span>3</span>Envía el comprobante por WhatsApp al <strong style="color:#fff">6550-1500</strong></li>
+          <li><span>4</span>Completa y envía el formulario</li>
         </ul>
-        <div class="fg" style="margin-top:16px;margin-bottom:0">
-          <label>Comprobante de pago Yappy *</label>
-          <input type="file" name="Comprobante Yappy" id="comprobante" accept="image/*,.pdf">
-        </div>
       </div>
 
       <div class="fdiv"></div>
@@ -362,7 +350,6 @@ function selMetodo(v, el) {
   document.querySelector('input[name="pago-ui"][value="'+v+'"]').checked = true;
   document.getElementById('h-metodo').value = v === 'card' ? 'Tarjeta' : 'Yappy';
   var yi = document.getElementById('yappy-info');
-  var comp = document.getElementById('comprobante');
   if (v === 'yappy') {
     yi.style.display = 'block';
     comp.setAttribute('required', 'required');
@@ -383,25 +370,45 @@ function enviar() {
   et.style.display = 'none';
   if (!t) { et.style.display = 'block'; return; }
 
+  var nombre = document.getElementById('fn') ? document.getElementById('fn').value.trim() : '';
+  var correo = document.getElementById('fe') ? document.getElementById('fe').value.trim() : '';
+  var wa = document.getElementById('fw') ? document.getElementById('fw').value.trim() : '';
+  if (!nombre || !correo || !wa) { alert('Por favor completa los campos obligatorios.'); return; }
+  if (!correo.includes('@')) { alert('Ingresa un correo válido.'); return; }
+
   var metodo = document.querySelector('input[name="pago-ui"]:checked').value;
   var btn = document.getElementById('sbtn');
+  btn.disabled = true;
+  btn.textContent = 'Enviando...';
 
-  if (metodo === 'yappy') {
-    var comp = document.getElementById('comprobante');
-    if (!comp.files || comp.files.length === 0) {
-      alert('Por favor sube el comprobante de pago Yappy.');
-      return;
+  // Submit to Google Forms via fetch (no-cors)
+  var fd = new FormData(document.getElementById('registro-form'));
+  fd.set('entry.258917689', metodo === 'card' ? 'Tarjeta' : 'Yappy');
+
+  fetch('https://docs.google.com/forms/d/e/1FAIpQLSfJvxGRkQHXfXVvSydFiB-pxyHL0P228HCP8ckxAJcrdIIJYA/formResponse', {
+    method: 'POST',
+    mode: 'no-cors',
+    body: fd
+  }).then(function() {
+    if (metodo === 'card') {
+      window.location.href = 'https://cuanto.app/alfaconsultores/w/55786f';
+    } else {
+      mostrarExito();
     }
-    btn.disabled = true;
-    btn.textContent = 'Enviando...';
-    document.getElementById('registro-form').submit();
+  }).catch(function() {
+    if (metodo === 'card') {
+      window.location.href = 'https://cuanto.app/alfaconsultores/w/55786f';
+    } else {
+      mostrarExito();
+    }
+  });
+}
 
-  } else {
-    // Tarjeta: directo a cuanto.app
-    btn.disabled = true;
-    btn.textContent = 'Redirigiendo al pago...';
-    window.location.href = 'https://cuanto.app/alfaconsultores/w/55786f';
-  }
+function mostrarExito() {
+  document.getElementById('form-section').style.display = 'none';
+  var sb = document.getElementById('success-section');
+  sb.style.display = 'block';
+  sb.scrollIntoView({ behavior: 'smooth' });
 }
 </script>
 </body>
