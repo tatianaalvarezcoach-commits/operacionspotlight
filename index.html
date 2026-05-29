@@ -351,11 +351,8 @@ function selMetodo(v, el) {
   var yi = document.getElementById('yappy-info');
   if (v === 'yappy') {
     yi.style.display = 'block';
-    comp.setAttribute('required', 'required');
   } else {
     yi.style.display = 'none';
-    comp.removeAttribute('required');
-    // _next no se usa para tarjeta — el JS redirige directamente
   }
 }
 
