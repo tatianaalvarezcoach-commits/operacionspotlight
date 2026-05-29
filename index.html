@@ -301,10 +301,10 @@ footer a:hover{color:var(--gold)}
 <div id="success-section">
   <div style="font-size:64px;margin-bottom:20px">🎯</div>
   <h2 class="success-title">¡Misión iniciada!</h2>
-  <p class="success-sub" id="smsg">Recibimos tu registro para Operación Spotlight.<br>Te contactaré en menos de 24 horas por Whatsapp para confirmar tu lugar y enviarte todos los detalles.</p>
+  <p class="success-sub" id="smsg">Recibimos tu registro para Operación Spotlight.<br>Te contactaré en menos de 24 horas por Whatsapp para confirmar tu lugar.</p>
   <ul class="steps">
-    <li><span class="step-n">1</span>Después de eso recibirás tu bienvenida oficial y acceso al grupo.</li>
-        <li><span class="step-n">4</span>¡Bienvenida a Operación Spotlight!</li>
+    <li><span class="step-n"></span>Después de eso recibirás tu bienvenida oficial y acceso al grupo.</li>
+        <li><span class="step-n"></span>¡Bienvenida a Operación Spotlight!</li>
   </ul>
 </div>
 
@@ -327,7 +327,7 @@ footer a:hover{color:var(--gold)}
 (function(){
   if(window.location.search.indexOf('success=1') > -1){
     document.getElementById('success-section').style.display = 'block';
-    document.getElementById('smsg').innerHTML = '¡Tu pago fue procesado con éxito!<br>Te escribiré por WhatsApp en las próximas horas para darte acceso al grupo.';
+    document.getElementById('smsg').innerHTML = '¡Tu pago fue procesado con éxito!<br>';
     setTimeout(function(){
       document.getElementById('success-section').scrollIntoView({behavior:'smooth'});
     }, 100);
@@ -345,7 +345,7 @@ function selPlan(v, el) {
     pv.textContent = '$497 USD'; pd.textContent = 'Pago único · Programa completo';
     hp.value = 'Pago único $497';
   } else {
-    pv.textContent = '$183 USD /cuota'; pd.textContent = '3 cuotas cada 2 semanas · Total $550';
+    pv.textContent = '$180 USD /cuota'; pd.textContent = '3 cuotas cada 2 semanas · Total $540';
     hp.value = '3 cuotas de $183 cada 2 semanas · Total $550';
   }
 }
