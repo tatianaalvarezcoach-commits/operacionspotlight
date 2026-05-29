@@ -199,15 +199,14 @@ footer a:hover{color:var(--gold)}
     <p class="form-sub">Completa el formulario — te contactamos en menos de 24 horas para confirmar.</p>
 
     <form id="registro-form"
-      action="https://formsubmit.co/tatianaalvarezcoach@gmail.com"
+      action="https://api.web3forms.com/submit"
       method="POST"
       enctype="multipart/form-data">
 
-      <!-- Formsubmit config -->
-      <input type="hidden" name="_subject" value="🎯 Nueva inscripción — Operación Spotlight">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
-      <input type="hidden" name="_next" id="form-next" value="https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1">
+      <!-- Web3Forms config -->
+      <input type="hidden" name="access_key" value="4c50adb0-a141-4385-8382-b10339d83ee8">
+      <input type="hidden" name="subject" value="🎯 Nueva inscripción — Operación Spotlight">
+      <input type="hidden" name="redirect" id="form-next" value="https://tatianaalvarezcoach-commits.github.io/operacionspotlight/?success=1">
       <input type="hidden" name="Plan" id="h-plan" value="Pago único $497">
       <input type="hidden" name="Método de pago" id="h-metodo" value="Tarjeta">
 
@@ -301,11 +300,7 @@ footer a:hover{color:var(--gold)}
 <div id="success-section">
   <div style="font-size:64px;margin-bottom:20px">🎯</div>
   <h2 class="success-title">¡Misión iniciada!</h2>
-  <p class="success-sub" id="smsg">Recibimos tu registro para Operación Spotlight.<br>Te contactaré en menos de 24 horas por Whatsapp para confirmar tu lugar.</p>
-  <ul class="steps">
-    <li><span class="step-n"></span>Después de eso recibirás tu bienvenida oficial y acceso al grupo.</li>
-        <li><span class="step-n"></span>¡Bienvenida a Operación Spotlight!</li>
-  </ul>
+  <p class="success-sub" id="smsg">Estaré contactándote en 24 horas para confirmar tu lugar y darte los detalles.<br><br>¡Bienvenida a Operación Spotlight!</p>
 </div>
 
 <!-- BOTTOM CTA -->
@@ -327,7 +322,7 @@ footer a:hover{color:var(--gold)}
 (function(){
   if(window.location.search.indexOf('success=1') > -1){
     document.getElementById('success-section').style.display = 'block';
-    document.getElementById('smsg').innerHTML = '¡Tu pago fue procesado con éxito!<br>';
+    document.getElementById('smsg').innerHTML = 'Estaré contactándote en 24 horas para confirmar tu lugar y darte los detalles.<br><br>¡Bienvenida a Operación Spotlight!';
     setTimeout(function(){
       document.getElementById('success-section').scrollIntoView({behavior:'smooth'});
     }, 100);
@@ -346,7 +341,7 @@ function selPlan(v, el) {
     hp.value = 'Pago único $497';
   } else {
     pv.textContent = '$180 USD /cuota'; pd.textContent = '3 cuotas cada 2 semanas · Total $540';
-    hp.value = '3 cuotas de $183 cada 2 semanas · Total $550';
+    hp.value = '3 cuotas de $180 cada 2 semanas · Total $540';
   }
 }
 
@@ -402,7 +397,7 @@ function enviar() {
     document.getElementById('registro-form').submit();
 
   } else {
-    // Tarjeta: directo a cuanto.app, sin pasar por Formsubmit
+    // Tarjeta: directo a cuanto.app
     btn.disabled = true;
     btn.textContent = 'Redirigiendo al pago...';
     window.location.href = 'https://cuanto.app/alfaconsultores/w/55786f';
