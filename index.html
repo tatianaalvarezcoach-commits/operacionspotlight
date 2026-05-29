@@ -21,7 +21,12 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .hero-eyebrow{font-size:11px;font-weight:700;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:block}
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,10vw,110px);color:#fff;line-height:.9;margin-bottom:8px;letter-spacing:2px}
 .hero-title span{color:var(--gold)}
-.hero-sub{font-size:16px;color:var(--muted);font-style:italic;margin-bottom:48px}
+.hero-sub{font-size:16px;color:var(--muted);font-style:italic;margin-bottom:40px}
+.hero-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px}
+.hero-btn-primary{display:inline-block;background:var(--orange);color:#fff;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:16px 36px;text-decoration:none;transition:background .2s;cursor:pointer;border:none;font-family:inherit}
+.hero-btn-primary:hover{background:var(--purple);color:#fff}
+.hero-btn-outline{display:inline-block;background:transparent;color:#fff;font-size:13px;font-weight:700;letter-spacing:3px;text-transform:uppercase;padding:15px 36px;text-decoration:none;border:1px solid rgba(255,255,255,.35);transition:all .2s}
+.hero-btn-outline:hover{border-color:var(--gold);color:var(--gold)}
 .hero-stats{display:flex;justify-content:center;gap:40px;flex-wrap:wrap}
 .stat-n{font-family:'Bebas Neue',sans-serif;font-size:48px;color:var(--gold);line-height:1}
 .stat-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:2px;margin-top:2px}
@@ -131,13 +136,6 @@ footer a:hover{color:var(--gold)}
 </head>
 <body>
 
-<!-- HERO -->
-<div class="hero">
-  <span class="hero-eyebrow">Cohorte Beta · Cupos limitados</span>
-  <h1 class="hero-title">Operación<br><span>Spotlight</span>™</h1>
-  <p class="hero-sub">Tu misión: ser vista, escuchada e imparable.</p>
-</div>
-
 <!-- PLANS -->
 <div class="section" id="planes-section">
   <div class="section-inner">
@@ -160,15 +158,15 @@ footer a:hover{color:var(--gold)}
           <li>La Noche de las Innegables</li>
           <li>Precio alumni para futuros cohorts</li>
         </ul>
-        <div class="plan-saving">Ahorra $103 vs. cuotas</div>
+        <div class="plan-saving">Ahorra $53 vs. cuotas</div>
       </div>
       <div class="plan" id="plan-cuotas" onclick="selPlan('cuotas',this)">
         <div class="plan-radio">
           <input type="radio" name="plan" id="r-cuotas" value="cuotas">
           <label for="r-cuotas">3 pagos</label>
         </div>
-        <div class="plan-price">$200<sub> /mes</sub></div>
-        <p class="plan-note">3 cuotas mensuales · Total $600 USD</p>
+        <div class="plan-price">$183<sub> /cuota</sub></div>
+        <p class="plan-note">3 cuotas cada 2 semanas · Total $550 USD</p>
         <ul class="plan-list">
           <li>4 sesiones grupales (60-75 min c/u)</li>
           <li>1 sesión privada 1:1 (60 min)</li>
@@ -349,8 +347,8 @@ function selPlan(v, el) {
     pv.textContent = '$497 USD'; pd.textContent = 'Pago único · Programa completo';
     hp.value = 'Pago único $497';
   } else {
-    pv.textContent = '$200 USD /mes'; pd.textContent = '3 cuotas · Total $600 USD';
-    hp.value = '3 cuotas de $200/mes';
+    pv.textContent = '$183 USD /cuota'; pd.textContent = '3 cuotas cada 2 semanas · Total $550';
+    hp.value = '3 cuotas de $183 cada 2 semanas · Total $550';
   }
 }
 
